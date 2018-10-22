@@ -1,13 +1,10 @@
 package corpus
 
 import (
-	"log"
-	"os"
-	"path/filepath"
-
-	help "github.com/AntoineAugusti/wordsegmentation/helpers"
-	m "github.com/AntoineAugusti/wordsegmentation/models"
-	"github.com/AntoineAugusti/wordsegmentation/parsers"
+	"github.com/bradbeam/wordsegmentation/data/english"
+	help "github.com/bradbeam/wordsegmentation/helpers"
+	m "github.com/bradbeam/wordsegmentation/models"
+	"github.com/bradbeam/wordsegmentation/parsers"
 )
 
 type EnglishCorpus struct {
@@ -23,25 +20,16 @@ func NewEnglishCorpus() EnglishCorpus {
 
 	// Load unigrams and bigrams from data files.
 	done := make(chan int)
-	for _, component := range filepath.SplitList(os.Getenv("GOPATH")) {
-		component = filepath.Clean(component)
-		dataPath := filepath.Join(component, "src", "github.com", "AntoineAugusti", "wordsegmentation", "data")
-		if _, err := os.Stat(dataPath); os.IsNotExist(err) {
-			log.Println(dataPath, "does not exist")
-			continue
-		}
-		go func(dataPath string) {
-			bigrams = parsers.Bigrams(filepath.Join(dataPath, "english", "bigrams.tsv"))
-			done <- 1
-		}(dataPath)
-		go func(dataPath string) {
-			unigrams = parsers.Unigrams(filepath.Join(dataPath, "english", "unigrams.tsv"))
-			done <- 1
-		}(dataPath)
-		<-done
-		<-done
-		break
-	}
+	go func() {
+		bigrams = parsers.Bigrams(english.Bigrams_data)
+		done <- 1
+	}()
+	go func() {
+		unigrams = parsers.Unigrams(english.Unigrams_data)
+		done <- 1
+	}()
+	<-done
+	<-done
 
 	return EnglishCorpus{unigrams, bigrams}
 }

@@ -1,6 +1,6 @@
-[![Travis CI](https://img.shields.io/travis/AntoineAugusti/wordsegmentation/master.svg?style=flat-square)](https://travis-ci.org/AntoineAugusti/wordsegmentation)
+[![Travis CI](https://img.shields.io/travis/bradbeam/wordsegmentation/master.svg?style=flat-square)](https://travis-ci.org/bradbeam/wordsegmentation)
 [![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/antoineaugusti/wordsegmentation/LICENSE.md)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/AntoineAugusti/wordsegmentation)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/bradbeam/wordsegmentation)
 
 # Word segmentation
 Word segmentation is the process of dividing a phrase without spaces back into its constituent parts. For example, consider a phrase like "thisisatest". Humans can immediately identify that the correct phrase should be "this is a test".
@@ -63,9 +63,9 @@ type Corpus interface {
 Take a look at the [English corpus source code](corpus/english.go) to help you start!
 
 ## Documentation
-The documentation of this package can be found on [GoDoc](https://godoc.org/github.com/AntoineAugusti/wordsegmentation). Here is a list of links for the different modules:
-- [`corpus`](https://godoc.org/github.com/AntoineAugusti/wordsegmentation/corpus) - the default English corpus
-- [`helpers`](https://godoc.org/github.com/AntoineAugusti/wordsegmentation/helpers) - little functions to get the length of a string, remove special characters of a string, get the minimum between 2 given integers
-- [`models`](https://godoc.org/github.com/AntoineAugusti/wordsegmentation/models) - the various objects used (Unigrams, Bigrams, Arrangement, Candidate, Possibility)
-- [`parsers`](https://godoc.org/github.com/AntoineAugusti/wordsegmentation/parsers) - parsers to read tab-separated files into Unigrams and Bigrams
-- [`segment`](https://godoc.org/github.com/AntoineAugusti/wordsegmentation) - the 'main' package
+The documentation of this package can be found on [GoDoc](https://godoc.org/github.com/bradbeam/wordsegmentation). Here is a list of links for the different modules:
+- [`corpus`](https://godoc.org/github.com/bradbeam/wordsegmentation/corpus) - the default English corpus
+- [`helpers`](https://godoc.org/github.com/bradbeam/wordsegmentation/helpers) - little functions to get the length of a string, remove special characters of a string, get the minimum between 2 given integers
+- [`models`](https://godoc.org/github.com/bradbeam/wordsegmentation/models) - the various objects used (Unigrams, Bigrams, Arrangement, Candidate, Possibility)
+- [`parsers`](https://godoc.org/github.com/bradbeam/wordsegmentation/parsers) - parsers to read tab-separated files into Unigrams and Bigrams
+- [`segment`](https://godoc.org/github.com/bradbeam/wordsegmentation) - the 'main' package

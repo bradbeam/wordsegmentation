@@ -3,7 +3,7 @@ package wordsegmentation
 import (
 	"testing"
 
-	c "github.com/AntoineAugusti/wordsegmentation/corpus"
+	c "github.com/bradbeam/wordsegmentation/corpus"
 	"github.com/stretchr/testify/assert"
 )
 

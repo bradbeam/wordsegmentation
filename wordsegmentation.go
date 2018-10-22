@@ -3,8 +3,8 @@ package wordsegmentation
 import (
 	"math"
 
-	help "github.com/AntoineAugusti/wordsegmentation/helpers"
-	m "github.com/AntoineAugusti/wordsegmentation/models"
+	help "github.com/bradbeam/wordsegmentation/helpers"
+	m "github.com/bradbeam/wordsegmentation/models"
 )
 
 var (

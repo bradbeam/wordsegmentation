@@ -2,16 +2,15 @@ package parsers
 
 import (
 	"bufio"
-	"os"
 	"strconv"
 	"strings"
 	"sync"
 
-	m "github.com/AntoineAugusti/wordsegmentation/models"
+	m "github.com/bradbeam/wordsegmentation/models"
 )
 
 // Parse unigrams from a given TSV file.
-func Unigrams(path string) m.Unigrams {
+func Unigrams(data string) m.Unigrams {
 	jobs := make(chan string, 5000)
 	results := make(chan m.Unigram, 5000)
 
@@ -22,7 +21,7 @@ func Unigrams(path string) m.Unigrams {
 	}
 
 	go func() {
-		readFile(path, jobs)
+		readFile(data, jobs)
 	}()
 
 	// Now collect all the results
@@ -42,7 +41,7 @@ func Unigrams(path string) m.Unigrams {
 }
 
 // Parse bigrams from a given TSV file.
-func Bigrams(path string) m.Bigrams {
+func Bigrams(data string) m.Bigrams {
 	jobs := make(chan string, 5000)
 	results := make(chan m.Bigram, 5000)
 
@@ -53,7 +52,7 @@ func Bigrams(path string) m.Bigrams {
 	}
 
 	go func() {
-		readFile(path, jobs)
+		readFile(data, jobs)
 	}()
 
 	// Now collect all the results
@@ -101,14 +100,9 @@ func parseBigram(jobs <-chan string, results chan<- m.Bigram, wg *sync.WaitGroup
 }
 
 // Read a file and put the content in a channel.
-func readFile(path string, jobs chan<- string) chan<- string {
-	file, err := os.Open(path)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
+func readFile(data string, jobs chan<- string) chan<- string {
 
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(strings.NewReader(data))
 	for scanner.Scan() {
 		jobs <- scanner.Text()
 	}
